@@ -15,7 +15,7 @@
 #include "IFS_DS18B20.h"
 #include "IFS_GPS.h"
 
-class icaruslib {
+class IcarusLib {
 
 };
 
