@@ -13,11 +13,13 @@
 #include "IFS_MLX90614.h"
 #include "IFS_US1881.h"
 #include "IFS_DS18B20.h"
+#include "IFS_LM35.h"
 #include "IFS_GPS.h"
 
+namespace IcarusLib{
 class IcarusLib {
 
 };
-
+}
 
 #endif
