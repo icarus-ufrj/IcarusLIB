@@ -7,12 +7,10 @@ namespace IcarusLib{
 class IFS_LM35 {
 	// Port associated to the sensor
 	unsigned pin;
-	//Value to convert the input from sensor to a temperature in Celsius degree
+	//Value to convert the input from sensor to a temperature in Celsius degree [(5/1023)*100]
 	const float CELSIUS_CONVERT = 0.48875855;
 	
 public:
-	IFS_LM35();
-	
 	// Function to set the pin associated to the sensor
 	void setPort(const unsigned &value);
 	
