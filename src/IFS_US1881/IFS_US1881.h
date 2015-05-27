@@ -2,6 +2,7 @@
 #define _IFS_US1881_H_
 
 #include "Arduino.h"
+#include <function>
 
 namespace IcarusLib{
 class IFS_US1881 {

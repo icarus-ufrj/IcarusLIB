@@ -4,8 +4,12 @@
 #include <OneWire.h>
 
 namespace IcarusLib{
-class IFS_DS18B20 : public OneWire {
+class IFS_DS18B20 {
+	OneWire *radTemperature = NULL;
 
+public:
+	IFS_DS18B20();
+	virtual ~IFS_DS18B20();
 };
 }
 
