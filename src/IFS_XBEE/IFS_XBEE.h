@@ -3,4 +3,10 @@
 
 #include <Arduino.h>
 
+namespace IcarusLib{
+class IFS_XBEE {
+
+};
+}
+
 #endif
