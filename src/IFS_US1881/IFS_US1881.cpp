@@ -15,32 +15,8 @@ void IFS_US1881::setPort(const unsigned &value){
 	pin = value;
 }
 
-void IFS_US1881::incrementCounterMagnet(){
-	counterMagnet++;
-	if (counterMagnet == magnets + 1){
-		// Restart the counter
-		counterMagnet = 0;
-		
-		// Calculating the Time to give a full rotation
-		endTime = micros();
-		intervalTime = endTime - startTime;
-
-		// Restarting the Clock
-		startTime = micros();
-	}
-}
-
-unsigned IFS_US1881::getCounterMagnet(){
-	return counterMagnet;
-}
-
 void IFS_US1881::getChangeState(){
-	sensorSingleton->incrementCounterMagnet();
-
-	//
-	if(sensorSingleton->getCounterMagnet() == 0){
-		sensorSingleton->calculateRPM();
-	}
+	sensorSingleton->calculateRPM();
 }
 
 unsigned IFS_US1881::getRPM(){
@@ -48,7 +24,23 @@ unsigned IFS_US1881::getRPM(){
 }
 
 void IFS_US1881::calculateRPM(){
-	
+	// Increment the number of noticed magnets
+	counterMagnet++;
+
+	// Check if the wheel gave a full rotation
+	if (counterMagnet == magnets+1){
+		// Restart the counter
+		counterMagnet = 0;
+		
+		// Calculating the Time to give a full rotation
+		endTime = micros();
+		
+		// Calculate the RPM of the Wheel
+		RPM = (endTime-startTime)*1e6 / 60;
+
+		// Restarting the Clock
+		startTime = micros();
+	}
 }
 
 }
