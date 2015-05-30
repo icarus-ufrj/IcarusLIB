@@ -4,8 +4,8 @@ TODO and Done list :
 
 * US1881 - Done 
 * LM35 - Done
-* DS18B20 - Next
-* MPU6050 - TODO
+* DS18B20 - Done
+* MPU6050 - Next
 * GPS - TODO
 * MLX90614 - TODO
 * XBEE - TODO
