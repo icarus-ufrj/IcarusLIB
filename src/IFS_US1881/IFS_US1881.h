@@ -3,6 +3,10 @@
 
 #include "Arduino.h"
 /*
+ *  This Class is a simple implementation for a Sensor Hall (US1881) to measure RPM of a Wheel.
+ * It's a high level approach to get a AttachInterrupt when a magnet pass through the sensor and
+ * it's easy to append more sensor with a correct data structure (Without consume to much memory). 
+ *
  * This Class need to be improved. The correct way of use it should be by launch a new thread.
  * But this is not possible (yet) in an Arduino board. To not give error or unexpected behavior you
  * need guarantee the RPM to be measured is really much slower than the arduino Clock speed.
