@@ -11,6 +11,10 @@ IFS_US1881::IFS_US1881(unsigned magnets) :
 	attachInterrupt(0, &IFS_US1881::getChangeState, RISING);
 }
 
+IFS_US1881::~IFS_US1881(){
+	delete sensorSingleton;
+}
+
 void IFS_US1881::setPort(const unsigned &value){
 	pin = value;
 }

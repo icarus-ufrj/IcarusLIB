@@ -31,6 +31,7 @@ class IFS_US1881 {
 
 public:
 	IFS_US1881(unsigned magnets = 1);
+	virtual ~IFS_US1881();
 
 	// Function to set the pin associated to the sensor
 	void setPort(const unsigned &value);
