@@ -20,3 +20,6 @@ TODO and Done list :
 ### Vendors
 
 ## Contributors
+* Heitor
+* Maria
+* Renan
