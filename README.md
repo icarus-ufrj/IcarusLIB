@@ -17,6 +17,8 @@ TODO and Done list :
 
 ## How to use
 
+Copy the src file to the arduino libraries.
+
 ### Vendors
 
 ## Contributors
