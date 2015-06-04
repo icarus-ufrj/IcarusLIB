@@ -12,11 +12,11 @@ class IFS_LM35 {
 	// Port associated to the sensor
 	unsigned pin;
 	//Value to convert the input from sensor to a temperature in Celsius degree [(5/1023)*100]
-	const float CELSIUS_CONVERT = 0.4887;
+	const float CELSIUS_CONVERT = 0.4888;
 	
 public:
 	// Function to set the pin associated to the sensor
-	void setPort(const unsigned &value);
+	void setPort(const unsigned value);
 	
 	// Function to read the temperature in Celsius degree
 	double readTemperature();

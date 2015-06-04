@@ -20,6 +20,8 @@ TODO and Done list :
 ### Dependencies
 * Arduino 1.6.3
 
+Copy the src file to the arduino libraries.
+
 ### Vendors
 * OneWire
 * I2C
