@@ -16,7 +16,7 @@ class IFS_LM35 {
 	
 public:
 	// Function to set the pin associated to the sensor
-	void setPort(const unsigned value);
+	void setPort(const unsigned &value);
 	
 	// Function to read the temperature in Celsius degree
 	double readTemperature();
