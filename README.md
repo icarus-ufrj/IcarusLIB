@@ -2,9 +2,9 @@
 
 TODO and Done list :
 
-* US1881 - Done 
-* LM35 - Done
-* DS18B20 - Done
+* US1881 - Done - To test 
+* LM35 - Done - To test
+* DS18B20 - Done - To test
 * MPU6050 - Next
 * GPS - TODO
 * MLX90614 - TODO
@@ -13,13 +13,19 @@ TODO and Done list :
 * IcarusLib - TODO
  
 
-## Objectives
+### Objectives
 
-## How to use
+### How to use
+
+### Dependencies
+* Arduino 1.6.3
 
 ### Vendors
+* OneWire
+* I2C
+* MPU6050
 
-## Contributors
-* Heitor
-* Maria
-* Renan
+### Contributors
+* Heitor R. Guimarães
+* Maria L. Kovashikawa
+* Renan R. Rotunno
