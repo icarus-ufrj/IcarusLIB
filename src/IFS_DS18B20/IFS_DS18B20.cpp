@@ -40,7 +40,7 @@ void IFS_DS18B20::setParasitePower(){
   // Write a Hex value on the port to set the power ON
   onewire->write(0x44, 1);
   // Delay before Re-select the sensor
-  delay(1000);
+  //delay(1000);
 }
 
 void IFS_DS18B20::getDataOfSensor(){
