@@ -2,9 +2,9 @@
 
 TODO and Done list :
 
-* US1881 - Done - To test 
-* LM35 - Done - To test
-* DS18B20 - Done - To test
+* <i>US1881 - Done - To test</i> 
+* <b>LM35 - Done - TESTED</b>
+* <b>DS18B20 - Done - TESTED</b>
 * MPU6050 - Next
 * GPS - TODO
 * MLX90614 - TODO
