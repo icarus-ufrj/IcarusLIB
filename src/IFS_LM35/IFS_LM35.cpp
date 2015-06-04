@@ -1,7 +1,7 @@
 #include "IFS_LM35.h"
 namespace IcarusLib{
 
-void IFS_LM35::setPort(const unsigned &value){
+void IFS_LM35::setPort(const unsigned value){
 	pin = value;
 }
 

@@ -7,6 +7,7 @@ const unsigned baudRate = 9600;
 IFS_LM35 *extRadTemp;
 
 void setup(){
+	extRadTemp = new IFS_LM35;
 	extRadTemp->setPort(SENSORPORT);
 	Serial.begin(baudRate);
 }
