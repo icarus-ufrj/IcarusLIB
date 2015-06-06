@@ -18,7 +18,7 @@ class IFS_US1881 {
 	static IFS_US1881 *sensorSingleton;
 	
 	// Value of the current RPM from the Wheel. Initialize with 0
-	float RPM = 0;
+	float RPM=0;
 
 	// Numerical value of the digital pin associated with the AttachInterrupt port
 	// and the number of magnets in the specified wheel.
