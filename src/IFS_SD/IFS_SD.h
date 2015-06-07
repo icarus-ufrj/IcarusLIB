@@ -27,13 +27,13 @@ class IFS_SD {
 		unsigned InitializeSD (unsigned = 10); 
 
 
-		void OpenfileSD(File &, const string, const string);
+		unsigned OpenfileSD(File &namefile, String path, unsigned preference=0);
 		
-		void ClosefileSD(File &);
+		void ClosefileSD(File &namefile);
 
-		void PrintlnfileSD(File &, <template>, string );
+		void PrintlnfileSD(File &namefile, String data , String BASE);
 
-		void PrintfileSD (File &namefile, <template>, string);
+		void PrintfileSD (File &namefile, String data, String BASE);
 
 
 

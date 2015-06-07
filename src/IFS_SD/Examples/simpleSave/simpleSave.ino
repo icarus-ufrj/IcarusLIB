@@ -1,24 +1,25 @@
 #include <IFS_SD.h>
 #include "Arduino.h"
 #include <SD.h>
-#include <SPI.h>
+
 
 using namespace IcarusLib;
 
 const int chipSelect =10;
 int finalValue;
 int sensorValue = 0;
-IFS_SD *sdcard;
+IFS_SD *sd;
 
 
 
 void setup()  
   {
+    sd = new IFS_SD;
     // Open serial communications and wait for port to open:
     Serial.begin(9600);
     Serial.println("Iniciando o cartão SD");
   
-    if(sdcard->InitializeSD (chipSelect))
+    if(sd->InitializeSD (chipSelect))
       return;
 
       Serial.println("Cartao inicializado");
@@ -30,17 +31,17 @@ void loop() // run over and over
   File dataFile;
   
   
-  if(sd->OpenfileSD(dataFile, dataString, FILE_WRITE ))
+  if(sd->OpenfileSD(dataFile, "datalog.csv", 0 ))
   {
     
     sd->PrintlnfileSD(dataFile, dataString, "HEX");
-    sd->ClosefileSD();
+    sd->ClosefileSD(dataFile);
     
   } 
   
   else
   {
-    return;
+    Serial.println ("Erro no cartao");
   } 
     
     

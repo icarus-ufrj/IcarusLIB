@@ -23,7 +23,7 @@ class IFS_MPU6050 {
 	/**
 	 * @brief [brief description]
 	 */
-	unsigned RX,TX;
+	unsigned SDA,SCL;
 	//@}
 
 public:
@@ -36,7 +36,9 @@ public:
 	 * @param pinRX [description]
 	 * @param pinTx [description]
 	 */
-	void setupPort(unsigned pinRX = 0, unsigned pinTx = 1);
+
+	 //it considerates UNO board
+	bool Initialize(unsigned pinSDA = A4, unsigned pinSCL = A5);
 	/**
 	 * @brief [brief description]
 	 * @details [long description]
@@ -54,14 +56,14 @@ public:
 	 * @details [long description]
 	 * @return [description]
 	 */
-	std::vector<double> readGyro();
+	
 
 private:
 	/**
 	 * @brief [brief description]
 	 * @details [long description]
 	 */
-	void setupMPU6050();
+	bool setupMPU6050();
 };
 }
 

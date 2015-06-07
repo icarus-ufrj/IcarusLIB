@@ -30,15 +30,24 @@ namespace IcarusLib{
 	}
 
 		//ver se precisa retornar algo e a questão de vector para files
-	  unsigned IFS_SD::OpenfileSD (File &namefile,const string path,  string preference) 
+	  unsigned IFS_SD::OpenfileSD (File &namefile, String path,  unsigned preference) 
 	  {
-	  		//it opens the file on SD card. Preference is or FILE_WRITE or FILE_READ
-	  		nameFile= SD.open(path, preference);
-	  			
+	  		//it opens the file on SD card. Preference=0 is for FILE_READ and Preferencie==1 is forFILE_WRITE
+	  		if (preference==0)
+	  		{	
+	  			nameFile= SD.open(path, FILE_READ);
 	  			if(nameFile){
 	  				return 1; //if everything is ok, returns 1
 	  			}
-
+	  		}
+	  		if(preference==1)
+	  		{	
+	  			nameFile= SD.open(path, FILE_WRITE);
+	  			if(nameFile){
+	  				return 1; //if everything is ok, returns 1
+	  			}
+	  		}
+	  			
 	  			return 0; //if there's something wrong
 
 	  }
@@ -48,13 +57,13 @@ namespace IcarusLib{
 	  		namefile.close();
 	  }
 
-	  void IFS_SD::PrintlnfileSD (File &namefile, <template> data, string BASE)
+	  void IFS_SD::PrintlnfileSD (File &namefile, String data, String BASE)
 	  {
 	  		namefile.println(data, BASE);
 
 	  }	  
 
-	  void IFS_SD::PrintfileSD (File &namefile, <template> data, string BASE)
+	  void IFS_SD::PrintfileSD (File &namefile, String data, String BASE)
 	  {
 	  		namefile.print(data, BASE);
 
