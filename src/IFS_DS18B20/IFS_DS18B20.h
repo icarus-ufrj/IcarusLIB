@@ -23,7 +23,7 @@ class IFS_DS18B20 {
 	// Array of bytes to request data and address of the sensor
 	byte *data;
 	byte *addr;
-	
+	//
 	// Config parameter associated with the sensor. Will check how to get raw data from the sensor.
 	byte cfg;
 
