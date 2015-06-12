@@ -58,7 +58,7 @@ public:
 	 */
 	
 
-private:
+
 	/**
 	 * @brief [brief description]
 	 * @details [long description]

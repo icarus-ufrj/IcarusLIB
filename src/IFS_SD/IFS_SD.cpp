@@ -1,13 +1,12 @@
 #include "IFS_SD.h"
 #include "SD.h"
+#include "Arduino.h"
 
 namespace IcarusLib{
 
 	//	constructor
 	IFS_SD::IFS_SD()
 	{
-		//sd = new SD;
-
 	}
 	
 	IFS_SD::~IFS_SD()
@@ -17,7 +16,7 @@ namespace IcarusLib{
 
 	}
 
-	unsigned IFS_SD::InitializeSD(unsigned cspin)
+	unsigned IFS_SD::InitializeSD(const int cspin) //OK
 	{
 		if(!SD.begin(cspin))
 		{
@@ -30,20 +29,20 @@ namespace IcarusLib{
 	}
 
 		//ver se precisa retornar algo e a questão de vector para files
-	  unsigned IFS_SD::OpenfileSD (File &namefile, String path,  unsigned preference) 
+	  unsigned IFS_SD::OpenfileSD (File *namefile, char* path,  unsigned preference) 
 	  {
 	  		//it opens the file on SD card. Preference=0 is for FILE_READ and Preferencie==1 is forFILE_WRITE
 	  		if (preference==0)
 	  		{	
-	  			nameFile= SD.open(path, FILE_READ);
-	  			if(nameFile){
+	  			*namefile= SD.open(path, FILE_READ);
+	  			if(*namefile){
 	  				return 1; //if everything is ok, returns 1
 	  			}
 	  		}
 	  		if(preference==1)
 	  		{	
-	  			nameFile= SD.open(path, FILE_WRITE);
-	  			if(nameFile){
+	  			*namefile= SD.open(path, FILE_WRITE);
+	  			if(*namefile){
 	  				return 1; //if everything is ok, returns 1
 	  			}
 	  		}
@@ -52,24 +51,27 @@ namespace IcarusLib{
 
 	  }
 
-	  void IFS_SD::ClosefileSD(File &namefile)
+	  
+	  void IFS_SD::ClosefileSD(File *namefile)
 	  {
-	  		namefile.close();
+	  		namefile->close();
 	  }
 
-	  void IFS_SD::PrintlnfileSD (File &namefile, String data, String BASE)
+
+	  
+	 void IFS_SD::PrintlnfileSD (File *namefile, String &data)
 	  {
-	  		namefile.println(data, BASE);
+	  		namefile->println(data);
+
+	  }	  
+	  
+	  void IFS_SD::PrintfileSD (File *namefile, String data)
+	  {
+	  		namefile->print(data);
 
 	  }	  
 
-	  void IFS_SD::PrintfileSD (File &namefile, String data, String BASE)
-	  {
-	  		namefile.print(data, BASE);
 
-	  }	  
-
-
-
+	
 
 }
