@@ -11,40 +11,61 @@
  */
 namespace IcarusLib{
 class IFS_DS18B20 {
-	// Instance of class OneWire to control the sensor's methods
+	/*
+	 * Instance of class OneWire to control the sensor's methods.
+	 */ 
 	OneWire *onewire;
 	
-	// Value associated with the Pin which receives data from the sensor
+	/*
+	 * Value associated with the Pin which receives data from the sensor
+	 */ 
 	unsigned pin;
 	
-	// Raw data associated with the temperature in DS18B20
+	/*
+	 * Raw data associated with the temperature in DS18B20.
+	 */ 
 	int16_t rawData;
 	
-	// Array of bytes to request data and address of the sensor
+	/*
+	 * Array of bytes to request data and address of the sensor.
+	 */ 
 	byte *data;
 	byte *addr;
-	//
-	// Config parameter associated with the sensor. Will check how to get raw data from the sensor.
+
+	/*
+	 * Config parameter associated with the sensor. Will check how to get raw data from the sensor.
+	 */ 
 	byte cfg;
 
 public:
 	IFS_DS18B20();
 	virtual ~IFS_DS18B20();
 	
-	// Function to set the pin associated to the sensor. Need to be a digital port.
+	/*
+	 * Function to set the pin associated to the sensor. Need to be a digital port.
+	 */ 
 	void setPort(const unsigned &value);
 	
-	// Function to read the temperature in Celsius degree.
+	/*
+	 * Function to read the temperature in Celsius degree.
+	 */
 	float readTemperature();
 
 private:
-	// Function to check if sensor is available.
+	
+	/*
+	 * Function to check if sensor is available.
+	 */ 
 	void searchSensor();
 
-	// Function to start the conversion of the sensor with parasite power ON.
+	/*
+	 * Function to start the conversion of the sensor with parasite power ON.
+	 */ 
 	void setParasitePower();
 
-	// Function to extract a raw value of the sensor with the temperature associated.
+	/*
+	 * Function to extract a raw value of the sensor with the temperature associated.
+	 */ 
 	void getDataOfSensor();
 };
 }
