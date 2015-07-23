@@ -12,6 +12,6 @@ void setup(){
 }
 
 void loop(){
-	Serial.print("RPM = );
+	Serial.print("RPM = ");
 	Serial.println(sensorHall->getRPM());
 }

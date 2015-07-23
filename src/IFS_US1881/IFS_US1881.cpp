@@ -34,8 +34,7 @@ void IFS_US1881::calculateRPM(){
 	
 	// Check if the wheel gave a full rotation
 	if (counterMagnet == magnets+1){
-	
-		
+			
 		// Restart the counter
 		counterMagnet = 0;
 		
@@ -43,8 +42,8 @@ void IFS_US1881::calculateRPM(){
 		endTime = micros();
 		
 		// Calculate the RPM of the Wheel
-		RPM = (endTime-startTime)*1e6 / 60;
-		Serial.println (RPM);
+		RPM = ((endTime-startTime) * 1e6) / 60;
+		
 		// Restarting the Clock
 		startTime = micros();
 	}
