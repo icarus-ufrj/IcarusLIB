@@ -2,25 +2,27 @@
 
 TODO and Done list :
 
-* <i>US1881 - Done - To test</i> 
-* <b>LM35 - Done - TESTED</b>
-* <b>DS18B20 - Done - TESTED</b>
-* MPU6050 - Next
-* GPS - TODO
-* MLX90614 - TODO
-* XBEE - TODO
-* SD - TODO
-* IcarusLib - TODO
+* US1881 - Done - Improved - To test 
+* <b>LM35 - Done - Improved - TESTED</b>
+* <b>DS18B20 - Done - Improved - TESTED</b>
+* MPU6050 - Done - To test
+* GPS - Done - To test
+* MLX90614 - Done - To test
+* XBEE - Done - To test
+* SD - Done - To test
+* IcarusLib - TODO 
  
 
 ### Objectives
 
+
 ### How to use
+
+Each folder inside the "src" folder works as a separated module. You just need to copy all the folders to the arduino
+libraries path. You also will need insert the vendors libraries on your libraries.
 
 ### Dependencies
 * Arduino 1.6.3
-
-Copy the src file to the arduino libraries.
 
 ### Vendors
 * OneWire
