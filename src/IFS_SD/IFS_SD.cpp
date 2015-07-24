@@ -1,58 +1,42 @@
 #include "IFS_SD.h"
-#include "SD.h"
-#include "Arduino.h"
 
 namespace IcarusLib{
 
-IFS_SD::IFS_SD(){
+IFS_SD::IFS_SD(char *namefile, unsigned pin){
+	if (InitializeSD(pin))
+		println("Error opening the SD card. Please check the configuration");
 }
 	
 IFS_SD::~IFS_SD(){
 
 }
 
-unsigned IFS_SD::InitializeSD(const int cspin) {
+bool IFS_SD::InitializeSD(const int cspin) {
+	return (!SD.begin(cspin)) ? false : true;
+}
 
-	if(!SD.begin(cspin)){
-		return 0; 
-	}	
+bool IFS_SD::OpenfileSD (char* path,  unsigned preference) {
+	if (!preference) {
+		*filesave = SD.open(path, FILE_READ);
+	  return (*filesave) ?  1 : 0; 
 	
-	sdtype=cspin;
-	return 1;
-}
-
-unsigned IFS_SD::OpenfileSD (File *namefile, char* path,  unsigned preference) {
-	if (preference==0) {
-		*namefile= SD.open(path, FILE_READ);
-	  
-	  if(*namefile){
-	  	return 1; //if everything is ok, returns 1
-	  }
+	} else {	
+		*filesave= SD.open(path, FILE_WRITE);
+	  return (*filesave) ?  1 : 0;
 	}
-	
-	if(preference==1){	
-		*namefile= SD.open(path, FILE_WRITE);
-	  if(*namefile){
-	  	return 1; //if everything is ok, returns 1
-	  }
-	}
-	  			
-	return 0; //if there's something wrong
 }
 
-	  
-void IFS_SD::ClosefileSD(File *namefile){
-	namefile->close();
+void IFS_SD::ClosefileSD(){
+	filesave->close();
 }
 
 
 	  
-void IFS_SD::PrintlnfileSD (File *namefile, String &data){
-	namefile->println(data);
+void IFS_SD::PrintlnfileSD (char *data){
+	filesave->println(data);
 }	  
 	  
-void IFS_SD::PrintfileSD (File *namefile, String data){
-	namefile->print(data);
-
+void IFS_SD::PrintfileSD (char *data){
+	filesave->print(data);
 }	  
 }

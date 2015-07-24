@@ -7,18 +7,37 @@
 namespace IcarusLib{
 class IFS_SD {
 private:
-	unsigned sdtype; //it 
+
+	/*
+	 * Return true if everything is ok with the SD card; and return false otherwise.
+	 */ 
+	bool InitializeSD (const int cspin);  
+
+	/*
+	 *
+	 */
+	unsigned OpenfileSD(char *path, unsigned preference = 0);
+
+	/*
+	 *
+	 */
+	void ClosefileSD();
+
+	char *filesave;
 
 public:
-	IFS_SD();
+	IFS_SD(char *namefile, unsigned pin = 10);
 	~IFS_SD();
-
-	//return 1 if everything is ok; return 0 if there is something wrong
-	unsigned InitializeSD (const int cspin = 10); 
-	unsigned OpenfileSD(File *namefile, char *path, unsigned preference=0);
-	void ClosefileSD(File *namefile);
-	void PrintlnfileSD(File *namefile, String &data);
-	void PrintfileSD (File *namefile, String data);
+	
+	/*
+	 *
+	 */
+	void PrintlnfileSD(char *data);
+	
+	/*
+	 *
+	 */
+	void PrintfileSD (char *data);
 };
 }
 #endif
