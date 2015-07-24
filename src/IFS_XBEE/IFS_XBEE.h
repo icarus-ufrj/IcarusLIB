@@ -5,23 +5,29 @@
 
 namespace IcarusLib{
 class IFS_XBEE {
-
-	
+private:
 	unsigned Baudrate;
-	String lastpacketreceived;
+	char *lastpacketreceived;
 	int lastpacketsent;
-	public:
 
-		IFS_XBEE();
+	/*
+	 *
+	 */
+	void InitializeSerialCommunication (const unsigned baudrate);
 
-		~IFS_XBEE();
+public:
+	IFS_XBEE(unsigned baudrate);
+	~IFS_XBEE();
 
-		void InitializeSerialCommunication (unsigned baudrate);
-
-		//from xbee that computer to arduino or, in other word, form coordinator to ...
-		void SendPackets (int &packetsent);
-
-		void ReceivePackets(String packetreceived);
+	/*
+	 *
+	 */
+	void SendPackets (int &packetsent);
+	
+	/*
+	 *
+	 */
+	void ReceivePackets(char *packetreceived);
 
 
 
