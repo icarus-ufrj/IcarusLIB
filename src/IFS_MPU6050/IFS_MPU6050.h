@@ -24,7 +24,6 @@ class IFS_MPU6050 {
 	 * @brief [brief description]
 	 */
 	unsigned SDA,SCL;
-	//@}
 
 public:
 	IFS_MPU6050();

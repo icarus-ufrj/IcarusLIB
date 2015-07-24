@@ -1,93 +1,82 @@
 #include "IFS_MPU6050.h"
 
 namespace IcarusLib{
-	
-
-	IFS_MPU6050::IFS_MPU6050()
-	{
-		gyroAccel = new MPU6050;
-	}
-
-	//improve the destructor
-	IFS_MPU6050::~IFS_MPU6050()
-	{
-		delete gyroAccel;
-	}
 
 
-	void IFS_MPU6050::Initialize(unsigned pinSDA, unsigned pinSCL)
-	{
-		SDA = pinSDA;
-		SCL=pinSCL;
-		setupMPU6050();
+IFS_MPU6050::IFS_MPU6050(){
+    gyroAccel = new MPU6050;
+}
 
-	}
+IFS_MPU6050::~IFS_MPU6050(){
+    delete gyroAccel;
+}
 
 
-	bool IFS_MPU6050::setupMPU6050(uint8_t &mpuIntStatus, uint8_t &devStatus, uint16_t &packetSize, bool &dmpReady, volatile bool &mpuInterrupt )
-	{
-		gyroAccel->initialize();
-		
-		if(gyroAccel->testConnection() == false)
-			{
-				return false;
-			}
+void IFS_MPU6050::Initialize(unsigned pinSDA, unsigned pinSCL){
+    SDA = pinSDA;
+    SCL=pinSCL;
+    setupMPU6050();
+}
 
-			//it missed set up the offser
-		if(gyroAccel->dmpInitialize()==0)
-		{
-		
-			gyroAccel->setDMPEnabled(true);
 
-			//DUVIDA DE COMO FAZER ESSE PASSO e FALTOU SETAR OS OFFSETS
-			attachInterrupt(0, &IFS_MPU6050::dmpDataReady(mpuInterrupt), RISING);
-        	mpuIntStatus = gyroAccel->getIntStatus();
+bool IFS_MPU6050::setupMPU6050(uint8_t &mpuIntStatus, uint8_t &devStatus,
+                                   uint16_t &packetSize, bool &dmpReady, 
+                                   volatile bool &mpuInterrupt )
+{
+    gyroAccel->initialize();
 
+    if(gyroAccel->testConnection() == false){
+        return false;
+    }
+
+    //it missed set up the offser
+    if(gyroAccel->dmpInitialize()==0){
+        gyroAccel->setDMPEnabled(true);
+
+        //DUVIDA DE COMO FAZER ESSE PASSO e FALTOU SETAR OS OFFSETS
+        attachInterrupt(0, &IFS_MPU6050::dmpDataReady(mpuInterrupt), RISING);
         mpuIntStatus = gyroAccel->getIntStatus();
-
+       
         // set our DMP Ready flag so the main loop() function knows it's okay to use it
         //Serial.println(F("DMP ready! Waiting for first interrupt..."));
         dmpReady = true;
 
         // get expected DMP packet size for later comparison
         packetSize = gyroAccel->dmpGetFIFOPacketSize();
+    
+    } else {
+        return false;
+    }
 
-		}
-		else{
-			return false;
-		}
+    return true;
 
-		return true;
-
-	}
-
-
-	void IFS_MPU6050::IFS_dmpDataReady(volatile bool &mpuInterrupt){
-			mpuInterrupt = true;
-	}
+}
 
 
-
-	std::vector<double> IFS_MPU6050::readGyro();
-	{
-		mpuInterrupt= false;
-		mpuIntStatus = gyroAccel->getIntStatus();
-		fifoCount = gyroAccel->getFIFOCount();
-
-		if ((mpuIntStatus & 0x10) || fifoCount == 1024) {
-        // reset so we can continue cleanly
-        	mpu->resetFIFO();
-        	Serial.println(F("FIFO overflow!"));
+void IFS_MPU6050::IFS_dmpDataReady(volatile bool &mpuInterrupt){
+    mpuInterrupt = true;
+}
 
 
-        	} else if (mpuIntStatus & 0x02) {
+
+std::vector<double> IFS_MPU6050::readGyro() {
+    mpuInterrupt= false;
+    mpuIntStatus = gyroAccel->getIntStatus();
+    fifoCount = gyroAccel->getFIFOCount();
+
+    if ((mpuIntStatus & 0x10) || fifoCount == 1024) {
+        mpu->resetFIFO();
+        Serial.println(F("FIFO overflow!"));
+
+
+    } else if (mpuIntStatus & 0x02) {
         // wait for correct available data length, should be a VERY short wait
         while (fifoCount < packetSize) fifoCount = gyroAccel->getFIFOCount();
 
         // read a packet from FIFO
         gyroAccel->getFIFOBytes(fifoBuffer, packetSize);
+            
         
-        // track FIFO count here in case there is > 1 packet available
         // (this lets us immediately read more without waiting for an interrupt)
         fifoCount -= packetSize;
 
@@ -158,7 +147,7 @@ namespace IcarusLib{
             Serial.print("\t");
             Serial.println(aaWorld.z);
         #endif
-    
+        
         #ifdef OUTPUT_TEAPOT
             // display uaternion values in InvenSense Teapot demo format:
             teapotPacket[2] = fifoBuffer[0];
@@ -173,13 +162,9 @@ namespace IcarusLib{
             teapotPacket[11]++; // packetCount, loops at 0xFF on purpose
         #endif
 
-        // blink LED to indicate activity
-        blinkState = !blinkState;
-        digitalWrite(LED_PIN, blinkState);
+    // blink LED to indicate activity
+    blinkState = !blinkState;
+    digitalWrite(LED_PIN, blinkState);
 
-	}
-
-
-
-
+    }
 }
