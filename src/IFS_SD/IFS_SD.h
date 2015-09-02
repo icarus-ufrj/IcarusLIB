@@ -2,7 +2,8 @@
 #define _IFS_SD_H
 
 #include "Arduino.h"
-#include <SD.h>
+#include "SD.h"
+#include "SPI.h"
 
 namespace IcarusLib{
 class IFS_SD {
@@ -16,14 +17,14 @@ private:
 	/*
 	 *
 	 */
-	unsigned OpenfileSD(char *path, unsigned preference = 0);
+	bool OpenfileSD (char* path,  unsigned preference);
 
 	/*
 	 *
 	 */
 	void ClosefileSD();
 
-	char *filesave;
+	File filesave;
 
 public:
 	IFS_SD(char *namefile, unsigned pin = 10);
@@ -32,12 +33,12 @@ public:
 	/*
 	 *
 	 */
-	void PrintlnfileSD(char *data);
+	void PrintlnfileSD(String data);
 	
 	/*
 	 *
 	 */
-	void PrintfileSD (char *data);
+	void PrintfileSD (String data);
 };
 }
 #endif
