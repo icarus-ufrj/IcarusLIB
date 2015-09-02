@@ -9,9 +9,8 @@ TODO and Done list :
 * GPS - Done - To test
 * MLX90614 - Done - To test
 * XBEE - Done - To test
-* SD - Done - To test
-* IcarusLib - TODO 
- 
+* SD - Done - Improved - To test
+
 
 ### Objectives
 

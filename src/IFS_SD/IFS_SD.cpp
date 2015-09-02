@@ -2,9 +2,17 @@
 
 namespace IcarusLib{
 
-IFS_SD::IFS_SD(char *namefile, unsigned pin){
-	if (InitializeSD(pin))
+IFS_SD::IFS_SD(char* namefile, unsigned pin){
+	filename = namefile;
+	if (InitializeSD(pin)){
 		Serial.println("Error opening the SD card. Please check the configuration");
+		return;
+	}
+
+	if(OpenfileSD()){
+		Serial.println("Error opening the selected file. Please, check if the file exist.");
+		return;
+	}
 }
 	
 IFS_SD::~IFS_SD(){
@@ -12,17 +20,17 @@ IFS_SD::~IFS_SD(){
 }
 
 bool IFS_SD::InitializeSD(const int cspin) {
-	return (!SD.begin(cspin)) ? false : true;
+	return (!SD.begin(cspin)) ? 0 : 1;
 }
 
-bool IFS_SD::OpenfileSD (char* path,  unsigned preference) {
+bool IFS_SD::OpenfileSD (unsigned preference) {
 	if (!preference) {
-		filesave = SD.open(path, FILE_READ);
-	  return (filesave) ?  1 : 0; 
+		filesave = SD.open(filename, FILE_READ);
+	  return (!filesave) ?  0 : 1; 
 	
 	} else {	
-		filesave= SD.open(path, FILE_WRITE);
-	  return (filesave) ?  1 : 0;
+		filesave= SD.open(filename, FILE_WRITE);
+	  return (!filesave) ?  0 : 1;
 	}
 }
 

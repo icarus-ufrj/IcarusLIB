@@ -12,12 +12,12 @@ private:
 	/*
 	 * Return true if everything is ok with the SD card; and return false otherwise.
 	 */ 
-	bool InitializeSD (const int cspin);  
+	bool InitializeSD(const int cspin);  
 
 	/*
 	 *
 	 */
-	bool OpenfileSD (char* path,  unsigned preference);
+	bool OpenfileSD(unsigned preference = 1);
 
 	/*
 	 *
@@ -25,11 +25,11 @@ private:
 	void ClosefileSD();
 
 	File filesave;
+	char* filename;
 
 public:
-	IFS_SD(char *namefile, unsigned pin = 10);
+	IFS_SD(char* namefile, unsigned pin = 10);
 	~IFS_SD();
-	
 	/*
 	 *
 	 */
