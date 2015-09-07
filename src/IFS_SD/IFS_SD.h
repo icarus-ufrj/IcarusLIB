@@ -30,6 +30,7 @@ private:
 public:
 	IFS_SD(char* namefile, unsigned pin = 10);
 	~IFS_SD();
+	
 	/*
 	 *
 	 */

@@ -1,16 +1,16 @@
-# Icarus - LIB
+## Icarus - LIB
 
-TODO and Done list :
+* Status Report
 
-* US1881 - Done - Improved - To test 
-* <b>LM35 - Done - Improved - TESTED</b>
-* <b>DS18B20 - Done - Improved - TESTED</b>
-* MPU6050 - Done - To test
-* GPS - Done - To test
-* MLX90614 - Done - To test
-* XBEE - Done - To test
-* SD - Done - Improved - To test
-
+Sensor  | Status  | Report  | Deploy phase
+------- | ------- | ------- | -------
+US1881 | Implemented | Improved | To test
+LM35 | Implemented | Improved | Tested
+DS18B20 | Implemented | Improved | Tested
+MPU6050 | Implemented | ---- | To test
+MLX90614 | Implemented | ---- | To test
+GPS | Implemented | ---- | To test
+SD | Implemented | Improved | To test
 
 ### Objectives
 

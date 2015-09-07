@@ -37,8 +37,6 @@ bool IFS_SD::OpenfileSD (unsigned preference) {
 void IFS_SD::ClosefileSD(){
 	filesave.close();
 }
-
-
 	  
 void IFS_SD::PrintlnfileSD (String data){
 	filesave.println(data);
