@@ -4,7 +4,7 @@
 
 Sensor  | Status  | Report  | Deploy phase
 ------- | ------- | ------- | -------
-US1881 | Implemented | Improved | To test
+US1881 | Implemented | Improved | Tested
 LM35 | Implemented | Improved | Tested
 DS18B20 | Implemented | Improved | Tested
 MPU6050 | Implemented | ---- | To test
